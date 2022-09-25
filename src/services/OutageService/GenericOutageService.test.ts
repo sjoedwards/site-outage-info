@@ -20,7 +20,9 @@ describe("Generic Outage Service - unit tests", () => {
   let applicationConfig: ApplicationConfig;
   let mockOutages: Outage[];
   beforeEach(() => {
-    applicationConfig = {} as ApplicationConfig;
+    applicationConfig = {
+      allOutagesPath: "/all-outages",
+    } as ApplicationConfig;
     configService = new ConfigService(applicationConfig);
     loggerService = new Logger();
     mockOutages = [outageFactory()];
@@ -37,7 +39,9 @@ describe("Generic Outage Service - unit tests", () => {
   describe("getAllOutages", () => {
     it("calls httpClient with the correct path and gets all the available outages", async () => {
       await genericOutageService.getAllOutages();
-      expect(httpClient.get).toHaveBeenCalledWith("/");
+      expect(httpClient.get).toHaveBeenCalledWith(
+        applicationConfig.allOutagesPath
+      );
     });
   });
 });

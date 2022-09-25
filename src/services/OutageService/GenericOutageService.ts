@@ -17,6 +17,7 @@ class GenericOutageService implements OutageService {
   }
 
   async getAllOutages(): Promise<Outage[]> {
+    const outages = await this.httpClient.get(this.allOutagesPath);
     return [];
   }
 
