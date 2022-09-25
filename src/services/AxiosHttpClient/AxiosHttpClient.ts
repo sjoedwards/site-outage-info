@@ -14,10 +14,13 @@ class AxiosHttpClient implements HttpClient {
     this.baseUrl = configService.get("baseUrl");
   }
   async get<T>(path: string, config: HttpOptions = { sendApiKey: true }) {
+    const headers: Record<string, string> = {};
+    if (config.sendApiKey) {
+      headers[COMMON_CONSTANTS.HEADERS.X_API_KEY] = this.apiKey;
+    }
+
     const response = await axios.get<T>(`${this.baseUrl}${path}`, {
-      headers: {
-        [COMMON_CONSTANTS.HEADERS.X_API_KEY]: this.apiKey,
-      },
+      headers,
     });
 
     return response?.data;
@@ -27,8 +30,17 @@ class AxiosHttpClient implements HttpClient {
     path: string,
     payload: Y,
     config: HttpOptions = { sendApiKey: true }
-  ) {
-    return undefined as T;
+  ): Promise<T> {
+    const headers: Record<string, string> = {};
+    if (config.sendApiKey) {
+      headers[COMMON_CONSTANTS.HEADERS.X_API_KEY] = this.apiKey;
+    }
+
+    const response = await axios.post<T>(`${this.baseUrl}${path}`, payload, {
+      headers,
+    });
+
+    return response?.data;
   }
 }
 

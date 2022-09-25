@@ -53,8 +53,8 @@ describe("AxiosHttpClient Class - unit tests", () => {
     await axiosHttpClient.post(testPath, testPayload);
     expect(axios.post).toHaveBeenCalledWith(
       `${baseUrl}${testPath}`,
-      expect.anything(),
-      testPayload
+      testPayload,
+      expect.anything()
     );
   });
 
@@ -75,9 +75,12 @@ describe("AxiosHttpClient Class - unit tests", () => {
       testPath,
       testPayload
     );
-    expect(axios.post).toHaveBeenCalledWith(`${baseUrl}${testPath}`, {
-      headers: { [COMMON_CONSTANTS.HEADERS.X_API_KEY]: apiKey },
+    expect(axios.post).toHaveBeenCalledWith(
+      `${baseUrl}${testPath}`,
       testPayload,
-    });
+      {
+        headers: { [COMMON_CONSTANTS.HEADERS.X_API_KEY]: apiKey },
+      }
+    );
   });
 });
