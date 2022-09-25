@@ -21,7 +21,7 @@ describe("Logger Class - unit tests", () => {
   it("should call the info method with the expected arguments", () => {
     const payload = { a: "a", b: { c: "c" } };
     instance.info("this is a message", payload);
-    expect(infoSpy).toHaveBeenCalledWith("this is a message");
+    expect(infoSpy).toHaveBeenCalledWith("this is a message", payload);
     // expect(pino.info as jest.Mock).toHaveBeenCalledWith({});
   });
 });

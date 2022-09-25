@@ -1,8 +1,8 @@
 import { ApplicationLogger } from "../../types/internal";
 
 class Logger implements ApplicationLogger {
-  info() {
-    return;
+  info(message: string, payload: unknown): void {
+    console.info(message, payload);
   }
   warn() {
     return;
