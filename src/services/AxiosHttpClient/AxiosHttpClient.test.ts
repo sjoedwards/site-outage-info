@@ -2,6 +2,7 @@ import ConfigService from "../Config/ConfigService";
 import AxiosHttpClient from "./AxiosHttpClient";
 import axios from "axios";
 import { COMMON_CONSTANTS } from "../../constants";
+import { ApplicationConfig } from "../../../types/internal";
 
 jest.mock("axios");
 
@@ -15,7 +16,7 @@ describe("AxiosHttpClient Class - unit tests", () => {
   beforeEach(() => {
     apiKey = "test-api-key";
     baseUrl = "http://base-url";
-    configService = new ConfigService({ apiKey, baseUrl });
+    configService = new ConfigService({ apiKey, baseUrl } as ApplicationConfig);
     axiosHttpClient = new AxiosHttpClient(configService);
     testPath = "/testpath";
     testPayload = { testPayload: "test" };

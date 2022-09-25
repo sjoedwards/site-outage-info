@@ -7,12 +7,7 @@
     "esModuleInterop": true,
     "types": ["node", "jest"]
   },
-  "include": [
-    "src/**/*.ts",
-    "prisma/**/*.ts",
-    "tests/**/*.ts",
-    "types/**/*.ts"
-  ],
+  "include": ["src/**/*.ts", "prisma/**/*.ts", "test/**/*.ts", "types/**/*.ts"],
   "exclude": ["node_modules"],
   "moduleResolution": "node"
 }

@@ -28,6 +28,7 @@ export interface ApplicationLogger {
 export interface ApplicationConfig {
   apiKey: string;
   baseUrl: string;
+  allOutagesPath: string;
 }
 
 export interface ApplicationConfigService {
@@ -41,6 +42,11 @@ export interface HttpOptions {
 export interface HttpClient {
   get<T>(path: string, options?: HttpOptions): Promise<T>;
   post<T, Y>(path: string, payload: Y, options?: HttpOptions): Promise<T>;
+}
+
+export interface OutageService {
+  getAllOutages(): Promise<Outage[]>;
+  filterOutagesPriorToDateTime(outages: Outage[], date: Date): Outage[];
 }
 
 export type OutageWithSiteName = Outage & SiteInfo["name"];

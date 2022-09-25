@@ -11,6 +11,7 @@ describe("Config Service - unit tests", () => {
     config = {
       apiKey: "test-api-key",
       baseUrl: "test-base-url",
+      allOutagesPath: "/outages-path",
     };
     configService = new ConfigService(config);
   });
