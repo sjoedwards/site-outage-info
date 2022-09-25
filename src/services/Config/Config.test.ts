@@ -10,9 +10,7 @@ describe("Config Service - unit tests", () => {
   beforeEach(() => {
     config = {
       apiKey: "test-api-key",
-      baseUrl: "test-base-url",
-      allOutagesPath: "/outages-path",
-    };
+    } as ApplicationConfig;
     configService = new ConfigService(config);
   });
   it("Allows retrieval of passed config options using config.get", () => {

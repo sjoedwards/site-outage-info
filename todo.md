@@ -17,4 +17,9 @@ Extra
 - [ ] Implement nodeCache (write httpCache)
 - [ ] JOI validation of config at runtime
 - [ ] class interfaces should be abstract classes
+
   - [ ] Refactor config class to generic
+
+  Extra (Extra!)
+
+- [ ] Would have added status in response from httpClient so services could make clever error handling decisions (i.e. site not found)

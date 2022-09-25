@@ -1,15 +1,15 @@
 import {
   ApplicationConfigService,
+  ApplicationLogger,
   HttpClient,
   Outage,
   OutageService,
 } from "../../../types/internal";
-import Logger from "../Logger/LoggerService";
 
 class GenericOutageService implements OutageService {
   private allOutagesPath: string;
   constructor(
-    private logger: Logger,
+    private logger: ApplicationLogger,
     private httpClient: HttpClient,
     configService: ApplicationConfigService
   ) {

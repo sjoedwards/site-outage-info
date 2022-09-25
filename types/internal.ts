@@ -25,6 +25,8 @@ export interface ApplicationConfig {
   apiKey: string;
   baseUrl: string;
   allOutagesPath: string;
+  siteInfoPath: string;
+  siteOutagePath: string;
 }
 
 export interface ApplicationConfigService {
@@ -43,6 +45,12 @@ export interface HttpClient {
 export interface OutageService {
   getAllOutages(): Promise<Outage[]>;
   filterOutagesPriorToDateTime(outages: Outage[], filterDate: Date): Outage[];
+}
+
+export interface SiteService {
+  getSiteInfo(siteId: string): SiteInfo;
+  getOutagesForSite(siteId: string, outages: Outage[]): OutageWithDeviceName[];
+  postOutagesForSite(siteId: string, outages: OutageWithDeviceName[]): void;
 }
 
 export type OutageWithDeviceName = Outage & Device["name"];
