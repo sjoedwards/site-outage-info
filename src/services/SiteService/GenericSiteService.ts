@@ -58,6 +58,7 @@ class GenericSiteService implements SiteService {
     siteId: string,
     outages: OutageWithDeviceName[]
   ): Promise<void> {
+    await this.httpClient.post(`${this.siteOutagePath}/${siteId}`, outages);
     return;
   }
 }

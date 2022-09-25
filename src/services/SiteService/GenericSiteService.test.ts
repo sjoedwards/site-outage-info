@@ -85,7 +85,7 @@ describe("GenericSiteService", () => {
           name: "device-2",
         },
       ];
-      const siteInfo = await genericSiteService.postOutagesForSite(
+      await genericSiteService.postOutagesForSite(
         mockSiteInfo.id,
         outagesForSite
       );
@@ -93,7 +93,6 @@ describe("GenericSiteService", () => {
         `${applicationConfig.siteOutagePath}/${mockSiteInfo.id}`,
         outagesForSite
       );
-      expect(siteInfo).toEqual(mockSiteInfo);
     });
   });
 });
