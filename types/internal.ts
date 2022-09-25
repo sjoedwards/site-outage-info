@@ -17,8 +17,6 @@ export interface SiteInfo {
   devices: Device[];
 }
 
-// Interfaces
-
 export interface ApplicationLogger {
   info(message: string, payload: unknown): void;
   warn(message: string, payload: unknown): void;
@@ -46,7 +44,7 @@ export interface HttpClient {
 
 export interface OutageService {
   getAllOutages(): Promise<Outage[]>;
-  filterOutagesPriorToDateTime(outages: Outage[], date: Date): Outage[];
+  filterOutagesPriorToDateTime(outages: Outage[], filterDate: Date): Outage[];
 }
 
 export type OutageWithDeviceName = Outage & Device["name"];

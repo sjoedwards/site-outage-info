@@ -9,6 +9,7 @@
 - [ ] Test and create index.ts
 - [ ] Logging
 - [ ] Create functional test & manually check
+- [ ] Global Error handling
 
 Extra
 

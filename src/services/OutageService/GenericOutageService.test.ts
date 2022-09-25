@@ -46,4 +46,28 @@ describe("Generic Outage Service - unit tests", () => {
       expect(outages).toEqual(mockOutages);
     });
   });
+  describe("filterOutagesPriorToDateTime", () => {
+    it("returns outages only before a passed date-time", async () => {
+      const filterDate = new Date("2022-01-01T00:00:00.000Z");
+      const outageAfterDate = outageFactory({
+        id: "1",
+        begin: new Date(filterDate.getTime() - 1),
+      });
+      const outageBeforeDate = outageFactory({
+          id: "2",
+          begin: new Date(filterDate.getTime() - 1),
+        }),
+        mockOutages = [outageAfterDate, outageBeforeDate];
+      genericOutageService = new GenericOutageService(
+        loggerService,
+        httpClient,
+        configService
+      );
+      const filteredDates = genericOutageService.filterOutagesPriorToDateTime(
+        mockOutages,
+        filterDate
+      );
+      expect(filteredDates).toEqual([outageAfterDate]);
+    });
+  });
 });
