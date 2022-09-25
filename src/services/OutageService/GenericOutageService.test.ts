@@ -7,7 +7,6 @@ import {
   Outage,
   OutageService,
 } from "../../../types/internal";
-import AxiosHttpClient from "../AxiosHttpClient/AxiosHttpClient";
 import Logger from "../Logger/LoggerService";
 import ConfigService from "../Config/ConfigService";
 import { outageFactory } from "../../../test/factories/outage.factory";

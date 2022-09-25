@@ -1,5 +1,3 @@
-import { COMMON_CONSTANTS } from "../src/constants";
-
 export interface Device {
   id: string;
   name: string;
