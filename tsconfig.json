@@ -7,6 +7,11 @@
     "esModuleInterop": true,
     "types": ["node", "jest"]
   },
-  "include": ["src/**/*.ts", "prisma/**/*.ts", "tests/**/*.ts"],
+  "include": [
+    "src/**/*.ts",
+    "prisma/**/*.ts",
+    "tests/**/*.ts",
+    "types/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }
