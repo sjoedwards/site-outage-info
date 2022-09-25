@@ -3,11 +3,14 @@ import { ApplicationLogger } from "../../types/internal";
 class Logger implements ApplicationLogger {
   info(message: string, payload: unknown): void {
     console.info(message, payload);
-  }
-  warn() {
     return;
   }
-  error() {
+  warn(message: string, payload: unknown): void {
+    console.warn(message, payload);
+    return;
+  }
+  error(message: string, payload: unknown): void {
+    console.error(message, payload);
     return;
   }
 }

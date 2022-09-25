@@ -16,9 +16,9 @@ export interface SiteInfo {
 }
 
 export interface ApplicationLogger {
-  info: (message: string, payload: unknown) => void;
-  warn: (message: string, payload: unknown) => void;
-  error: (message: string, payload: unknown) => void;
+  info(message: string, payload: unknown): void;
+  warn(message: string, payload: unknown): void;
+  error(message: string, payload: unknown): void;
 }
 
 export type OutageWithSiteName = Outage & SiteInfo["name"];
