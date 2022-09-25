@@ -10,7 +10,8 @@ class AxiosHttpClient implements HttpClient {
   }
   async get<T>(path: string) {
     const response = await axios.get<T>(`${this.baseUrl}${path}`);
-    return undefined as T;
+
+    return response?.data;
   }
 
   post<T>() {
