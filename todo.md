@@ -1,6 +1,6 @@
 - [/] Class diagram
 - [/] Rough documentation
-- [ ] Test and create Logger
+- [/] Test and create Logger
 - [ ] Test and create ConfigService
 - [ ] Test and create HttpClient
 - [ ] Test and create OutageService
@@ -13,3 +13,6 @@ Extra
 
 - [ ] Extend httpClient to retry on 500
 - [ ] Implement nodeCache (write httpCache)
+- [ ] JOI validation of config at runtime
+- [ ] class interfaces should be abstract classes
+  - [ ] Refactor config class to generic

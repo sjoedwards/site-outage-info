@@ -1,5 +1,5 @@
-import { ApplicationLogger } from "../../types/internal";
-import Logger from "./Logger";
+import { ApplicationLogger } from "../../../types/internal";
+import Logger from "./LoggerService";
 
 describe("Logger Class - unit tests", () => {
   let instance: ApplicationLogger;
