@@ -22,6 +22,16 @@ describe("Logger Class - unit tests", () => {
     const payload = { a: "a", b: { c: "c" } };
     instance.info("this is a message", payload);
     expect(infoSpy).toHaveBeenCalledWith("this is a message", payload);
-    // expect(pino.info as jest.Mock).toHaveBeenCalledWith({});
+  });
+
+  it("should call the warn method with the expected arguments", () => {
+    const payload = { a: "a", b: { c: "c" } };
+    instance.warn("this is a message", payload);
+    expect(warnSpy).toHaveBeenCalledWith("this is a message", payload);
+  });
+  it("should call the error method with the expected arguments", () => {
+    const payload = { a: "a", b: { c: "c" } };
+    instance.error("this is a message", payload);
+    expect(errorSpy).toHaveBeenCalledWith("this is a message", payload);
   });
 });
