@@ -49,4 +49,4 @@ export interface OutageService {
   filterOutagesPriorToDateTime(outages: Outage[], date: Date): Outage[];
 }
 
-export type OutageWithSiteName = Outage & SiteInfo["name"];
+export type OutageWithDeviceName = Outage & Device["name"];
