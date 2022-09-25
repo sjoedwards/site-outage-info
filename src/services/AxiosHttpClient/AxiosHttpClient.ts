@@ -1,15 +1,24 @@
 import axios from "axios";
-import { ApplicationConfigService, HttpClient } from "../../../types/internal";
+import {
+  ApplicationConfigService,
+  HttpClient,
+  HttpOptions,
+} from "../../../types/internal";
+import { COMMON_CONSTANTS } from "../../constants";
 
 class AxiosHttpClient implements HttpClient {
   private apiKey;
   private baseUrl;
   constructor(configService: ApplicationConfigService) {
-    this.apiKey = "";
+    this.apiKey = configService.get("apiKey");
     this.baseUrl = configService.get("baseUrl");
   }
-  async get<T>(path: string) {
-    const response = await axios.get<T>(`${this.baseUrl}${path}`);
+  async get<T>(path: string, config: HttpOptions = { sendApiKey: true }) {
+    const response = await axios.get<T>(`${this.baseUrl}${path}`, {
+      headers: {
+        [COMMON_CONSTANTS.HEADERS.X_API_KEY]: this.apiKey,
+      },
+    });
 
     return response?.data;
   }

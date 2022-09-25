@@ -33,8 +33,7 @@ export interface ApplicationConfigService {
 }
 
 export interface HttpOptions {
-  apiKey: boolean;
-  baseUrl: string;
+  sendApiKey?: boolean;
 }
 
 export interface HttpClient {

@@ -1,7 +1,7 @@
 import ConfigService from "../Config/ConfigService";
 import AxiosHttpClient from "./AxiosHttpClient";
 import axios from "axios";
-import { COMMON_CONFIG } from "../../constants";
+import { COMMON_CONSTANTS } from "../../constants";
 
 jest.mock("axios");
 
@@ -25,7 +25,10 @@ describe("AxiosHttpClient Class - unit tests", () => {
 
   it("Get: Calls the correct url when getting a resource", async () => {
     await axiosHttpClient.get(testPath);
-    expect(axios.get).toHaveBeenCalledWith(`${baseUrl}${testPath}`);
+    expect(axios.get).toHaveBeenCalledWith(
+      `${baseUrl}${testPath}`,
+      expect.anything()
+    );
   });
 
   it("Get: Returns the correct response when getting a resource", async () => {
@@ -40,9 +43,7 @@ describe("AxiosHttpClient Class - unit tests", () => {
   it("Get: Sends the configured api key by default", async () => {
     await axiosHttpClient.get<{ response: string }>(testPath);
     expect(axios.get).toHaveBeenCalledWith(`${baseUrl}${testPath}`, {
-      headers: { [COMMON_CONFIG.HEADERS.X_API_KEY]: apiKey },
+      headers: { [COMMON_CONSTANTS.HEADERS.X_API_KEY]: apiKey },
     });
   });
-
-  // TODO auth
 });
