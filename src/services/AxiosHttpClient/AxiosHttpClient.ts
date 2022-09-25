@@ -23,7 +23,11 @@ class AxiosHttpClient implements HttpClient {
     return response?.data;
   }
 
-  post<T>() {
+  async post<T, Y>(
+    path: string,
+    payload: Y,
+    config: HttpOptions = { sendApiKey: true }
+  ) {
     return undefined as T;
   }
 }
