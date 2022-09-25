@@ -25,10 +25,21 @@ export interface ApplicationLogger {
 
 export interface ApplicationConfig {
   apiKey: string;
+  baseUrl: string;
 }
 
 export interface ApplicationConfigService {
   get(key: keyof ApplicationConfig): string;
+}
+
+export interface HttpOptions {
+  apiKey: boolean;
+  baseUrl: string;
+}
+
+export interface HttpClient {
+  get<T>(path: string, options?: HttpOptions): Promise<T>;
+  post<T, Y>(path: string, payload: Y, options?: HttpOptions): Promise<T>;
 }
 
 export type OutageWithSiteName = Outage & SiteInfo["name"];

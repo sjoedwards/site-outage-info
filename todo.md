@@ -1,7 +1,7 @@
 - [/] Class diagram
 - [/] Rough documentation
 - [/] Test and create Logger
-- [ ] Test and create ConfigService
+- [/] Test and create ConfigService
 - [ ] Test and create HttpClient
 - [ ] Test and create OutageService
 - [ ] Test and create SiteService

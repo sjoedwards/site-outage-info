@@ -10,6 +10,7 @@ describe("Config Service - unit tests", () => {
   beforeEach(() => {
     config = {
       apiKey: "test-api-key",
+      baseUrl: "test-base-url",
     };
     configService = new ConfigService(config);
   });
