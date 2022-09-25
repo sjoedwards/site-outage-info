@@ -7,6 +7,7 @@
 - [ ] Test and create SiteService
 - [ ] Test and create OutageReporter
 - [ ] Test and create index.ts
+- [ ] Logging
 - [ ] Create functional test & manually check
 
 Extra

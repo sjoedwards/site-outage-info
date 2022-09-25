@@ -38,10 +38,12 @@ describe("Generic Outage Service - unit tests", () => {
   });
   describe("getAllOutages", () => {
     it("calls httpClient with the correct path and gets all the available outages", async () => {
-      await genericOutageService.getAllOutages();
+      const outages = await genericOutageService.getAllOutages();
       expect(httpClient.get).toHaveBeenCalledWith(
         applicationConfig.allOutagesPath
       );
+
+      expect(outages).toEqual(mockOutages);
     });
   });
 });
