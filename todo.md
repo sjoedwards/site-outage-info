@@ -4,7 +4,7 @@
 - [/] Test and create ConfigService
 - [/] Test and create HttpClient
 - [/] Test and create OutageService
-- [ ] Test and create SiteService
+- [/] Test and create SiteService
 - [ ] Test and create OutageReporter
 - [ ] Logging
 - [ ] Global Error handling
