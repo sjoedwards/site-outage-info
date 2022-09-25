@@ -18,8 +18,23 @@ describe("AxiosHttpClient Class - unit tests", () => {
     testPath = "/testpath";
   });
 
+  afterEach(() => {
+    jest.restoreAllMocks;
+  });
+
   it("Calls the correct url when getting a resource", async () => {
     await axiosHttpClient.get(testPath);
     expect(axios.get).toHaveBeenCalledWith(`${baseUrl}${testPath}`);
   });
+
+  it("Returns the correct response when getting a resource", async () => {
+    const testResponse = { response: "test" };
+    (axios.get as jest.Mock).mockResolvedValueOnce({
+      data: testResponse,
+    });
+    const response = await axiosHttpClient.get<{ response: string }>(testPath);
+    expect(response).toEqual(testResponse);
+  });
+
+  // TODO auth
 });
