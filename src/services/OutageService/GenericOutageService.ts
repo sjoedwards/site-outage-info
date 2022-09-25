@@ -17,8 +17,8 @@ class GenericOutageService implements OutageService {
   }
 
   async getAllOutages(): Promise<Outage[]> {
-    const outages = await this.httpClient.get(this.allOutagesPath);
-    return [];
+    const outages = await this.httpClient.get<Outage[]>(this.allOutagesPath);
+    return outages;
   }
 
   filterOutagesPriorToDateTime(outages: Outage[], date: Date): Outage[] {
