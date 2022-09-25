@@ -26,11 +26,33 @@ class GenericSiteService implements SiteService {
     );
     return siteInfo;
   }
-  async getOutagesForSite(
-    site: SiteInfo,
-    outages: Outage[]
-  ): Promise<OutageWithDeviceName[]> {
-    return [];
+  getOutagesForSite(site: SiteInfo, outages: Outage[]): OutageWithDeviceName[] {
+    const normalisedDevices = site.devices.reduce<Record<string, string>>(
+      (acc, device) => {
+        return { ...acc, [device.id]: device.name };
+      },
+      {}
+    );
+
+    const matchingOutages = outages
+      .map((outage) => {
+        const matchingDevice = normalisedDevices[outage.id];
+        if (matchingDevice) {
+          return {
+            ...outage,
+            name: matchingDevice,
+          };
+        }
+      })
+      .filter(
+        (
+          outage: OutageWithDeviceName | undefined
+        ): outage is OutageWithDeviceName => {
+          return !!outage;
+        }
+      );
+
+    return matchingOutages;
   }
   async postOutagesForSite(
     siteId: string,

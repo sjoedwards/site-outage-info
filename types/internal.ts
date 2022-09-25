@@ -52,11 +52,11 @@ export interface SiteService {
   getOutagesForSite(
     siteInfo: SiteInfo,
     outages: Outage[]
-  ): Promise<OutageWithDeviceName[]>;
+  ): OutageWithDeviceName[];
   postOutagesForSite(
     siteId: string,
     outages: OutageWithDeviceName[]
   ): Promise<void>;
 }
 
-export type OutageWithDeviceName = Outage & Device["name"];
+export type OutageWithDeviceName = Outage & { name: Device["name"] };
