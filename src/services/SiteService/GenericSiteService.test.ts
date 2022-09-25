@@ -1,3 +1,4 @@
+import { outageFactory } from "../../../test/factories/outage.factory";
 import { siteInfoFactory } from "../../../test/factories/siteInfo.factory";
 import {
   ApplicationConfig,
@@ -51,6 +52,26 @@ describe("GenericSiteService", () => {
       expect(siteInfo).toEqual(mockSiteInfo);
     });
   });
-  // describe("getOutagesForSite", () => {});
+  describe("getOutagesForSite", () => {
+    it("omits any outages which do not match devices for a specific site", () => {
+      const matchingDevice1 = { id: "1", name: "device-1" };
+      const matchingOutage1 = outageFactory({ id: matchingDevice1.id });
+      const matchingDevice2 = { id: "2", name: "device-2" };
+      const matchingOutage2 = outageFactory({ id: matchingDevice2.id });
+      const nonMatchingOutage = outageFactory({ id: "3" });
+      const mockOutages = [matchingOutage1, matchingOutage2, nonMatchingOutage];
+      mockSiteInfo = siteInfoFactory({
+        devices: [matchingDevice1, matchingDevice2],
+      });
+      const outagesForSite = genericSiteService.getOutagesForSite(
+        mockSiteInfo,
+        mockOutages
+      );
+      expect(outagesForSite).toEqual([
+        { ...matchingOutage1, name: matchingDevice1.name },
+        { ...matchingOutage2, name: matchingDevice2.name },
+      ]);
+    });
+  });
   // describe("postOutagesForSite", () => {});
 });

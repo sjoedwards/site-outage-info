@@ -27,7 +27,7 @@ class GenericSiteService implements SiteService {
     return siteInfo;
   }
   async getOutagesForSite(
-    siteId: string,
+    site: SiteInfo,
     outages: Outage[]
   ): Promise<OutageWithDeviceName[]> {
     return [];

@@ -50,7 +50,7 @@ export interface OutageService {
 export interface SiteService {
   getSiteInfo(siteId: string): Promise<SiteInfo>;
   getOutagesForSite(
-    siteId: string,
+    siteInfo: SiteInfo,
     outages: Outage[]
   ): Promise<OutageWithDeviceName[]>;
   postOutagesForSite(
