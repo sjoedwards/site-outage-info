@@ -1,5 +1,5 @@
-- [ ] Class diagram
-- [ ] Rough documentation
+- [/] Class diagram
+- [/] Rough documentation
 - [ ] Test and create Logger
 - [ ] Test and create ConfigService
 - [ ] Test and create HttpClient

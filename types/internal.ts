@@ -15,4 +15,10 @@ export interface SiteInfo {
   devices: Device[];
 }
 
+export interface ApplicationLogger {
+  info: (message: string, payload: unknown) => void;
+  warn: (message: string, payload: unknown) => void;
+  error: (message: string, payload: unknown) => void;
+}
+
 export type OutageWithSiteName = Outage & SiteInfo["name"];
