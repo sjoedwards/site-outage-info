@@ -73,5 +73,27 @@ describe("GenericSiteService", () => {
       ]);
     });
   });
-  // describe("postOutagesForSite", () => {});
+  describe("postOutagesForSite", () => {
+    it("calls the httpClient post method with an array of outages for a specific site", async () => {
+      const outagesForSite = [
+        {
+          ...outageFactory({ id: "1" }),
+          name: "device-1",
+        },
+        {
+          ...outageFactory({ id: "1" }),
+          name: "device-2",
+        },
+      ];
+      const siteInfo = await genericSiteService.postOutagesForSite(
+        mockSiteInfo.id,
+        outagesForSite
+      );
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `${applicationConfig.siteOutagePath}/${mockSiteInfo.id}`,
+        outagesForSite
+      );
+      expect(siteInfo).toEqual(mockSiteInfo);
+    });
+  });
 });
