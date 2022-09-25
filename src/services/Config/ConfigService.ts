@@ -6,7 +6,7 @@ import {
 class ConfigService implements ApplicationConfigService {
   constructor(private config: ApplicationConfig) {}
   get(key: keyof ApplicationConfig): string {
-    return "";
+    return this.config[key];
   }
 }
 
