@@ -48,9 +48,15 @@ export interface OutageService {
 }
 
 export interface SiteService {
-  getSiteInfo(siteId: string): SiteInfo;
-  getOutagesForSite(siteId: string, outages: Outage[]): OutageWithDeviceName[];
-  postOutagesForSite(siteId: string, outages: OutageWithDeviceName[]): void;
+  getSiteInfo(siteId: string): Promise<SiteInfo>;
+  getOutagesForSite(
+    siteId: string,
+    outages: Outage[]
+  ): Promise<OutageWithDeviceName[]>;
+  postOutagesForSite(
+    siteId: string,
+    outages: OutageWithDeviceName[]
+  ): Promise<void>;
 }
 
 export type OutageWithDeviceName = Outage & Device["name"];

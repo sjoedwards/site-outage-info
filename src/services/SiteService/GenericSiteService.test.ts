@@ -43,11 +43,12 @@ describe("GenericSiteService", () => {
   });
 
   describe("getSite", () => {
-    it("gets site infomation given a valid id", () => {
-      const siteInfo = genericSiteService.getSiteInfo(mockSiteInfo.id);
+    it("gets site infomation given a valid id", async () => {
+      const siteInfo = await genericSiteService.getSiteInfo(mockSiteInfo.id);
       expect(httpClient.get).toHaveBeenCalledWith(
         `${applicationConfig.siteInfoPath}/${mockSiteInfo.id}`
       );
+      expect(siteInfo).toEqual(mockSiteInfo);
     });
   });
   // describe("getOutagesForSite", () => {});

@@ -12,21 +12,30 @@ class GenericSiteService implements SiteService {
   private siteInfoPath: string;
   private siteOutagePath: string;
   constructor(
-    logger: ApplicationLogger,
-    httpClient: HttpClient,
+    private logger: ApplicationLogger,
+    private httpClient: HttpClient,
     configService: ApplicationConfigService
   ) {
     this.siteInfoPath = configService.get("siteInfoPath");
     this.siteOutagePath = configService.get("siteOutagePath");
   }
 
-  getSiteInfo(siteId: string): SiteInfo {
-    return {} as SiteInfo;
+  async getSiteInfo(siteId: string): Promise<SiteInfo> {
+    const siteInfo = await this.httpClient.get<SiteInfo>(
+      `${this.siteInfoPath}/${siteId}`
+    );
+    return siteInfo;
   }
-  getOutagesForSite(siteId: string, outages: Outage[]): OutageWithDeviceName[] {
+  async getOutagesForSite(
+    siteId: string,
+    outages: Outage[]
+  ): Promise<OutageWithDeviceName[]> {
     return [];
   }
-  postOutagesForSite(siteId: string, outages: OutageWithDeviceName[]): void {
+  async postOutagesForSite(
+    siteId: string,
+    outages: OutageWithDeviceName[]
+  ): Promise<void> {
     return;
   }
 }
