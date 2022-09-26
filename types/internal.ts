@@ -59,8 +59,8 @@ export interface SiteService {
   ): Promise<void>;
 }
 
-export interface OutageReporter {
-  reportOutagesForSitePriorToDate(id: string, date: string): void;
+export interface OutageReporterService {
+  reportOutagesForSitePriorToDate(id: string, date: string): Promise<void>;
 }
 
 export type OutageWithDeviceName = Outage & { name: Device["name"] };

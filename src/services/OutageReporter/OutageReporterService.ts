@@ -1,17 +1,21 @@
 import {
-  OutageReporter,
   OutageService,
   ApplicationLogger,
   SiteService,
+  OutageReporterService,
 } from "../../../types/internal";
 
-class GenericOutageReporterService implements OutageReporter {
+class GenericOutageReporterService implements OutageReporterService {
   constructor(
     private logger: ApplicationLogger,
     private outageService: OutageService,
     private siteService: SiteService
   ) {}
-  reportOutagesForSitePriorToDate(id: string, date: string): void {
+  async reportOutagesForSitePriorToDate(
+    siteId: string,
+    date: string
+  ): Promise<void> {
+    const outages = this.outageService.getAllOutages();
     return;
   }
 }

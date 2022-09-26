@@ -4,23 +4,27 @@ import {
   ApplicationConfig,
   ApplicationConfigService,
   ApplicationLogger,
-  HttpClient,
   Outage,
+  OutageReporterService,
   OutageService,
   SiteInfo,
   SiteService,
 } from "../../../types/internal";
 import ConfigService from "../Config/ConfigService";
 import Logger from "../Logger/LoggerService";
-import GenericOutageService from "../OutageService/GenericOutageService";
+import GenericOutageReporterService from "./OutageReporterService";
 
 describe("GenericOutageReporterService", () => {
+  let genericOutageReporterService: OutageReporterService;
   let outageService: OutageService;
   let siteService: SiteService;
   let mockOutages: Outage[];
   let filterDateTime: string;
   let siteId: string;
   let siteInfo: SiteInfo;
+  let configService: ApplicationConfigService;
+  let applicationConfig: ApplicationConfig;
+  let loggerService: ApplicationLogger;
 
   beforeEach(() => {
     filterDateTime = "2022-01-01T00:00:00.000Z";
@@ -45,6 +49,12 @@ describe("GenericOutageReporterService", () => {
         .mockReturnValue([{ ...mockOutages[2], name: "device-name" }]),
       postOutagesForSite: jest.fn().mockResolvedValue(undefined),
     };
+    loggerService = new Logger();
+    genericOutageReporterService = new GenericOutageReporterService(
+      loggerService,
+      outageService,
+      siteService
+    );
   });
 
   afterEach(() => {
@@ -52,8 +62,12 @@ describe("GenericOutageReporterService", () => {
   });
 
   describe("reportOutagesForSitePriorToDate", () => {
-    it("gets outage information, gets site outage information and reports it", () => {
-      expect(outageService).toHaveBeenCalledWith(siteId);
+    it("gets outage information, gets site outage information and reports it", async () => {
+      await genericOutageReporterService.reportOutagesForSitePriorToDate(
+        siteId,
+        filterDateTime
+      );
+      expect(outageService.getAllOutages).toHaveBeenCalledTimes(1);
     });
   });
 });
