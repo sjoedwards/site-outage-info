@@ -68,6 +68,10 @@ describe("GenericOutageReporterService", () => {
         filterDateTime
       );
       expect(outageService.getAllOutages).toHaveBeenCalledTimes(1);
+      expect(outageService.filterOutagesPriorToDateTime).toHaveBeenCalledWith(
+        [mockOutages[0], mockOutages[1]],
+        new Date(filterDateTime)
+      );
     });
   });
 });
