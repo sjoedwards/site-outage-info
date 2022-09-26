@@ -36,4 +36,5 @@ $ yarn run test:functional
 
 ### Development process
 
-- Please see [todo] file for an idea of my thought process / next steps!(./todo.md)
+- Please see [todo](./todo.md) file for an idea of my thought process / next steps!
+- ![Class Diagram](./Documentation//site-outage-info.drawio.png "Class Diagram")
