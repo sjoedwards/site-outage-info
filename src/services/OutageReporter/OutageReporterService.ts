@@ -21,7 +21,11 @@ class GenericOutageReporterService implements OutageReporterService {
       outages,
       outageDate
     );
-    const siteInfo = this.siteService.getSiteInfo(siteId);
+    const siteInfo = await this.siteService.getSiteInfo(siteId);
+    const outagesForSite = this.siteService.getOutagesForSite(
+      siteInfo,
+      filteredOutages
+    );
     return;
   }
 }
