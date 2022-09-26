@@ -48,15 +48,19 @@ describe("Generic Outage Service - unit tests", () => {
   describe("filterOutagesPriorToDateTime", () => {
     it("returns outages only before a passed date-time", async () => {
       const filterDate = new Date("2022-01-01T00:00:00.000Z");
+      const outageOnDate = outageFactory({
+        id: "1",
+        begin: new Date(filterDate).toISOString(),
+      });
       const outageAfterDate = outageFactory({
         id: "1",
-        begin: new Date(filterDate.getTime() + 1),
+        begin: new Date("2022-06-25T10:17:36.591Z").toISOString(),
       });
       const outageBeforeDate = outageFactory({
           id: "2",
-          begin: new Date(filterDate.getTime() - 1),
+          begin: new Date(filterDate.getTime() - 1).toISOString(),
         }),
-        mockOutages = [outageAfterDate, outageBeforeDate];
+        mockOutages = [outageOnDate, outageAfterDate, outageBeforeDate];
       genericOutageService = new GenericOutageService(
         loggerService,
         httpClient,
@@ -66,7 +70,7 @@ describe("Generic Outage Service - unit tests", () => {
         mockOutages,
         filterDate
       );
-      expect(filteredDates).toEqual([outageAfterDate]);
+      expect(filteredDates).toEqual([outageOnDate, outageAfterDate]);
     });
   });
 });
