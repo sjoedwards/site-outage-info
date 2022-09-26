@@ -10,7 +10,6 @@ import {
   SiteInfo,
   SiteService,
 } from "../../../types/internal";
-import ConfigService from "../Config/ConfigService";
 import Logger from "../Logger/LoggerService";
 import GenericOutageReporterService from "./OutageReporterService";
 
@@ -22,8 +21,7 @@ describe("GenericOutageReporterService", () => {
   let filterDateTime: string;
   let siteId: string;
   let siteInfo: SiteInfo;
-  let configService: ApplicationConfigService;
-  let applicationConfig: ApplicationConfig;
+
   let loggerService: ApplicationLogger;
 
   beforeEach(() => {
@@ -69,7 +67,7 @@ describe("GenericOutageReporterService", () => {
       );
       expect(outageService.getAllOutages).toHaveBeenCalledTimes(1);
       expect(outageService.filterOutagesPriorToDateTime).toHaveBeenCalledWith(
-        [mockOutages[0], mockOutages[1]],
+        mockOutages,
         new Date(filterDateTime)
       );
     });

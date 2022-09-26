@@ -15,7 +15,12 @@ class GenericOutageReporterService implements OutageReporterService {
     siteId: string,
     date: string
   ): Promise<void> {
-    const outages = this.outageService.getAllOutages();
+    const outages = await this.outageService.getAllOutages();
+    const outageDate = new Date(date);
+    const filteredOutages = this.outageService.filterOutagesPriorToDateTime(
+      outages,
+      outageDate
+    );
     return;
   }
 }
