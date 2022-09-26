@@ -26,6 +26,7 @@ class GenericOutageReporterService implements OutageReporterService {
       siteInfo,
       filteredOutages
     );
+    await this.siteService.postOutagesForSite(siteId, outagesForSite);
     return;
   }
 }
