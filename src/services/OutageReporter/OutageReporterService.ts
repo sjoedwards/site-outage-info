@@ -37,7 +37,7 @@ class GenericOutageReporterService implements OutageReporterService {
 
       await this.siteService.postOutagesForSite(siteId, outagesForSite);
       this.logger.info(
-        `outage info for 1 outage for site ${siteId} posted successfully`
+        `outage info for ${outagesForSite.length} outage's for site ${siteId} posted successfully`
       );
       return;
     } catch (e) {

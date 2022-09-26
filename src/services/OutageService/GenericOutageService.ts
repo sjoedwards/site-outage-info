@@ -22,7 +22,7 @@ class GenericOutageService implements OutageService {
   }
 
   filterOutagesPriorToDateTime(outages: Outage[], filterDate: Date): Outage[] {
-    return outages.filter((outage) => new Date(outage.begin) > filterDate);
+    return outages.filter((outage) => new Date(outage.begin) >= filterDate);
   }
 }
 
