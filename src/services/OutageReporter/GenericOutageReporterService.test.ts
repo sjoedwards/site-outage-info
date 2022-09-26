@@ -71,6 +71,10 @@ describe("GenericOutageReporterService", () => {
         new Date(filterDateTime)
       );
       expect(siteService.getSiteInfo).toHaveBeenCalledWith(siteId);
+      expect(siteService.getOutagesForSite).toHaveBeenCalledWith(siteInfo, [
+        mockOutages[0],
+        mockOutages[1],
+      ]);
     });
   });
 });
