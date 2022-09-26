@@ -28,12 +28,6 @@ $ yarn run start
 $ yarn run test
 ```
 
-### Running functional tests
-
-```
-$ yarn run test:functional
-```
-
 ### Development process
 
 - Please see [todo](./todo.md) file for an idea of my thought process / next steps!

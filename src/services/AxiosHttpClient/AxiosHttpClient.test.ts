@@ -23,7 +23,7 @@ describe("AxiosHttpClient Class - unit tests", () => {
   });
 
   afterEach(() => {
-    jest.restoreAllMocks;
+    jest.resetAllMocks();
   });
 
   it("Get: Calls the correct url when getting a resource", async () => {
@@ -85,15 +85,45 @@ describe("AxiosHttpClient Class - unit tests", () => {
     );
   });
   describe("unhappy paths", () => {
-    it("will retry a get request if a 5xx is retrieved", async () => {
-      (axios.get as jest.Mock).mockRejectedValueOnce({
-        data: { message: "oh no! A problem occured when calling the api!" },
+    it("will retry a get request once if a 5xx is retrieved", async () => {
+      (axios.get as jest.Mock).mockRejectedValue({
+        isAxiosError: true,
+        response: { status: 500 },
       });
-      await axiosHttpClient.get(testPath);
+      (axios.isAxiosError as unknown as jest.Mock).mockReturnValue(true);
+
+      let error;
+      try {
+        await axiosHttpClient.get(testPath);
+      } catch (e) {
+        error = e;
+      }
 
       expect(axios.get).toHaveBeenCalledTimes(2);
       expect(axios.get).toHaveBeenCalledWith(
         `${baseUrl}${testPath}`,
+        expect.anything()
+      );
+    });
+
+    it("will retry a post request once if a 5xx is retrieved", async () => {
+      (axios.post as jest.Mock).mockRejectedValue({
+        isAxiosError: true,
+        response: { status: 500 },
+      });
+      (axios.isAxiosError as unknown as jest.Mock).mockReturnValue(true);
+
+      let error;
+      try {
+        await axiosHttpClient.post(testPath, testPayload);
+      } catch (e) {
+        error = e;
+      }
+
+      expect(axios.post).toHaveBeenCalledTimes(2);
+      expect(axios.post).toHaveBeenCalledWith(
+        `${baseUrl}${testPath}`,
+        testPayload,
         expect.anything()
       );
     });

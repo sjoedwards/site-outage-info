@@ -98,7 +98,7 @@ describe("GenericOutageReporterService", () => {
         { ...mockOutages[2], name: "device-name" },
       ]);
       expect(loggerService.info).toHaveBeenCalledWith(
-        `outage info for 1 outage for site ${siteInfo.id} posted successfully`
+        `outage info for 1 outage's for site ${siteInfo.id} posted successfully`
       );
     });
   });
