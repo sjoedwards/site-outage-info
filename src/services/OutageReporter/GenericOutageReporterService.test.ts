@@ -75,6 +75,9 @@ describe("GenericOutageReporterService", () => {
         mockOutages[0],
         mockOutages[1],
       ]);
+      expect(siteService.postOutagesForSite).toHaveBeenCalledWith(siteId, [
+        { ...mockOutages[2], name: "device-name" },
+      ]);
     });
   });
 });
