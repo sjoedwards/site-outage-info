@@ -26,8 +26,8 @@ describe("GenericOutageReporterService", () => {
 
   beforeEach(() => {
     filterDateTime = "2022-01-01T00:00:00.000Z";
-    siteId = "test-id";
     siteInfo = siteInfoFactory();
+    siteId = siteInfo.id;
 
     mockOutages = [
       outageFactory({ id: "1" }),
