@@ -5,10 +5,12 @@ import Logger from "./services/Logger/LoggerService";
 import GenericOutageReporterService from "./services/OutageReporter/OutageReporterService";
 import GenericOutageService from "./services/OutageService/GenericOutageService";
 import GenericSiteService from "./services/SiteService/GenericSiteService";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 // Dependencies
 const siteId = "norwich-pear-tree";
-const filterDateTime = `2022-01-01T00:00:00.000Z `;
+const filterDateTime = `2022-01-01T00:00:00.000Z`;
 const config: ApplicationConfig = {
   apiKey: process.env["API_KEY"] || "",
   baseUrl: process.env["BASE_URL"] || "",
@@ -33,7 +35,10 @@ const outageReporterService = new GenericOutageReporterService(
 );
 const main = async () => {
   try {
-    await outageReporterService;
+    await outageReporterService.reportOutagesForSitePriorToDate(
+      siteId,
+      filterDateTime
+    );
   } catch (e) {
     process.exit(1);
   }

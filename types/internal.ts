@@ -5,8 +5,8 @@ export interface Device {
 
 export interface Outage {
   id: string;
-  begin: Date;
-  end: Date;
+  begin: string;
+  end: string;
 }
 
 export interface SiteInfo {
