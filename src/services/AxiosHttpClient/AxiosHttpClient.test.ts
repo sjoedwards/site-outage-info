@@ -84,4 +84,18 @@ describe("AxiosHttpClient Class - unit tests", () => {
       }
     );
   });
+  describe("unhappy paths", () => {
+    it("will retry a get request if a 5xx is retrieved", async () => {
+      (axios.get as jest.Mock).mockRejectedValueOnce({
+        data: { message: "oh no! A problem occured when calling the api!" },
+      });
+      await axiosHttpClient.get(testPath);
+
+      expect(axios.get).toHaveBeenCalledTimes(2);
+      expect(axios.get).toHaveBeenCalledWith(
+        `${baseUrl}${testPath}`,
+        expect.anything()
+      );
+    });
+  });
 });

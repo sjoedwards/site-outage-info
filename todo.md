@@ -8,8 +8,8 @@
 - [/] Test and create OutageReporter
 - [/] Logging
 - [/] Global Error handling
-- [ ] Create index.ts
-- [ ] Manually check
+- [/] Create index.ts
+- [/] Manually check
 
 Extra
 
@@ -22,3 +22,4 @@ Extra (If I had infinite time!)
 - [ ] Create functional test using nock etc.
 - [ ] Implement nodeCache (write httpCache abstraction)
 - [ ] Configurable siteID and filter dateTime from CLI / config file
+- [ ] Could log a warn when we have to retry HTTP requests
