@@ -47,7 +47,11 @@ describe("GenericOutageReporterService", () => {
         .mockReturnValue([{ ...mockOutages[2], name: "device-name" }]),
       postOutagesForSite: jest.fn().mockResolvedValue(undefined),
     };
-    loggerService = new Logger();
+    loggerService = {
+      info: jest.fn(),
+      warn: jest.fn(),
+      error: jest.fn(),
+    };
     genericOutageReporterService = new GenericOutageReporterService(
       loggerService,
       outageService,
@@ -66,18 +70,36 @@ describe("GenericOutageReporterService", () => {
         filterDateTime
       );
       expect(outageService.getAllOutages).toHaveBeenCalledTimes(1);
+      expect(loggerService.info).toHaveBeenCalledWith(
+        `Retrieved ${mockOutages.length} outages`
+      );
       expect(outageService.filterOutagesPriorToDateTime).toHaveBeenCalledWith(
         mockOutages,
         new Date(filterDateTime)
       );
+      expect(loggerService.info).toHaveBeenCalledWith(
+        `2 outages remaining beyond the target dateTime of ${filterDateTime}`
+      );
+
       expect(siteService.getSiteInfo).toHaveBeenCalledWith(siteId);
+      expect(loggerService.info).toHaveBeenCalledWith(
+        `siteInfo retrieved`,
+        siteInfo
+      );
       expect(siteService.getOutagesForSite).toHaveBeenCalledWith(siteInfo, [
         mockOutages[0],
         mockOutages[1],
       ]);
+      expect(loggerService.info).toHaveBeenCalledWith(
+        `outages for ${siteInfo.id} retrieved`,
+        [{ ...mockOutages[2], name: "device-name" }]
+      );
       expect(siteService.postOutagesForSite).toHaveBeenCalledWith(siteId, [
         { ...mockOutages[2], name: "device-name" },
       ]);
+      expect(loggerService.info).toHaveBeenCalledWith(
+        `outage info for 1 outage for site ${siteInfo.id} posted successfully`
+      );
     });
   });
 });

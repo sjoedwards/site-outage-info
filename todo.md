@@ -5,7 +5,7 @@
 - [/] Test and create HttpClient
 - [/] Test and create OutageService
 - [/] Test and create SiteService
-- [ ] Test and create OutageReporter
+- [/] Test and create OutageReporter
 - [ ] Logging
 - [ ] Global Error handling
 - [ ] Create index.ts
