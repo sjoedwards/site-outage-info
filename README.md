@@ -33,3 +33,7 @@ $ yarn run test
 ```
 $ yarn run test:functional
 ```
+
+### Development process
+
+- Please see [todo] file for an idea of my thought process / next steps!(./todo.md)
