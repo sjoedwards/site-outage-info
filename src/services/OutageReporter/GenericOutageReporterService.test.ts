@@ -70,6 +70,7 @@ describe("GenericOutageReporterService", () => {
         mockOutages,
         new Date(filterDateTime)
       );
+      expect(siteService.getSiteInfo).toHaveBeenCalledWith(siteId);
     });
   });
 });
